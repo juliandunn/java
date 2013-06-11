@@ -4,7 +4,7 @@ gemfile:
 rvm:
   - "1.9.2"
   - "1.9.3"
-script: bundle exec rake test:syntax test:spec
+script: bundle exec rake test:syntax test:lint test:spec
 notifications:
   email:
     - jdunn@aquezada.com
