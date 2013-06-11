@@ -1,0 +1,48 @@
+---
+driver_plugin: ec2
+driver_config:
+  aws_access_key_id: <%= ENV['AWS_ACCESS_KEY'] %>
+  aws_secret_access_key: <%= ENV['AWS_SECRET_KEY'] %>
+  aws_ssh_key_id: <%= ENV['AWS_SSH_KEY_ID'] %>
+  ssh_key: <%= File.expand_path('~/.ssh/opscode-training-account-jdunn.pem') %>
+  region: us-east-1
+  require_chef_omnibus: true
+  groups: ["jdunn"]
+
+platforms:
+- name: ubuntu-12.04
+  driver_config:
+    image_id: ami-cf5e2ba6
+    username: ubuntu
+  run_list: ["recipe[apt]"]
+- name: centos-6.4
+  driver_config:
+    image_id: ami-56009e3f
+    username: ec2-user
+
+suites:
+- name: openjdk
+  run_list: ["recipe[minitest-handler]", "recipe[java::openjdk]"]
+  attributes: {}
+- name: openjdk-7
+  excludes: ["ubuntu-10.04", "debian-6"]
+  run_list: ["recipe[minitest-handler]", "recipe[java::openjdk]"]
+  attributes:
+    java:
+      jdk_version: "7"
+
+- name: oracle
+  run_list: ["recipe[minitest-handler]", "recipe[java::oracle]"]
+  attributes:
+    java:
+      oracle:
+        accept_oracle_download_terms: true
+      install_flavor: "oracle"
+- name: oracle-7
+  run_list: ["recipe[minitest-handler]", "recipe[java::oracle]"]
+  attributes:
+    java:
+      jdk_version: "7"
+      oracle:
+        accept_oracle_download_terms: true
+      install_flavor: "oracle"
