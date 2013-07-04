@@ -40,8 +40,9 @@ suites:
 - name: openjdk
   run_list: ["recipe[minitest-handler]", "recipe[java::openjdk]"]
   attributes: {}
+  excludes: ["sles-11-sp2"]
 - name: openjdk-7
-  excludes: ["ubuntu-10.04", "debian-6"]
+  excludes: ["ubuntu-10.04", "debian-6", "sles-11-sp2"]
   run_list: ["recipe[minitest-handler]", "recipe[java::openjdk]"]
   attributes:
     java:
