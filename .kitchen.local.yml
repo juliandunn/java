@@ -10,14 +10,27 @@ driver_config:
   groups: ["jdunn"]
 
 platforms:
+- name: amazon-2013-03-01
+  driver_config:
+    image_id: ami-05355a6c
+    username: ec2-user
+- name: ubuntu-13.04
+  driver_config:
+    image_id: ami-c30360aa
+    username: ubuntu
+  run_list: ["recipe[apt]"]
 - name: ubuntu-12.04
   driver_config:
-    image_id: ami-cf5e2ba6
+    image_id: ami-d0f89fb9
     username: ubuntu
   run_list: ["recipe[apt]"]
 - name: centos-6.4
   driver_config:
     image_id: ami-56009e3f
+    username: ec2-user
+- name: sles-11-sp2
+  driver_config:
+    image_id: ami-ca32efa3
     username: ec2-user
 
 suites:
