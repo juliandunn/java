@@ -30,6 +30,11 @@ platforms:
       box: opscode-fedora-18
       box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode-fedora-18_provisionerless.box
 
+- name: sles-11-sp2
+  driver_config:
+    box: opscode-sles-11-sp2
+    box_url: https://youcantgetit.com/opscode-sles-11-sp2.box
+
 suites:
   - name: openjdk
     excludes:
