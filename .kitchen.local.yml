@@ -4,7 +4,7 @@ driver_config:
   aws_access_key_id: <%= ENV['AWS_ACCESS_KEY'] %>
   aws_secret_access_key: <%= ENV['AWS_SECRET_KEY'] %>
   aws_ssh_key_id: <%= ENV['AWS_SSH_KEY_ID'] %>
-  ssh_key: <%= File.expand_path('~/.ssh/opscode-training-account-jdunn.pem') %>
+  ssh_key: <%= File.expand_path('~/.ssh/opscode-ec2-consulting-account.pem') %>
   region: us-east-1
   require_chef_omnibus: true
   groups: ["jdunn"]
@@ -14,24 +14,27 @@ platforms:
   driver_config:
     image_id: ami-05355a6c
     username: ec2-user
-- name: ubuntu-13.04
+- name: centos-6.4
   driver_config:
-    image_id: ami-c30360aa
-    username: ubuntu
-  run_list: ["recipe[apt]"]
+    image_id: ami-56009e3f
+    username: ec2-user
+- name: fedora-19
+  driver_config:
+    image_id: ami-b22e5cdb
+    username: fedora
+- name: sles-11-sp2
+  driver_config:
+    image_id: ami-ca32efa3
 - name: ubuntu-12.04
   driver_config:
     image_id: ami-d0f89fb9
     username: ubuntu
   run_list: ["recipe[apt]"]
-- name: centos-6.4
+- name: ubuntu-13.04
   driver_config:
-    image_id: ami-56009e3f
-    username: ec2-user
-- name: sles-11-sp2
-  driver_config:
-    image_id: ami-ca32efa3
-    username: ec2-user
+    image_id: ami-c30360aa
+    username: ubuntu
+  run_list: ["recipe[apt]"]
 
 suites:
 - name: openjdk
