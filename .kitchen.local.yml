@@ -18,6 +18,10 @@ platforms:
   driver_config:
     image_id: ami-56009e3f
     username: ec2-user
+- name: fedora-18
+  driver_config:
+    image_id: ami-b71078de
+    username: ec2-user
 - name: fedora-19
   driver_config:
     image_id: ami-b22e5cdb
@@ -40,7 +44,7 @@ suites:
 - name: openjdk
   run_list: ["recipe[minitest-handler]", "recipe[java::openjdk]"]
   attributes: {}
-  excludes: ["sles-11-sp2"]
+  excludes: ["sles-11-sp2", "fedora-18", "fedora-19"]
 - name: openjdk-7
   excludes: ["ubuntu-10.04", "debian-6", "sles-11-sp2"]
   run_list: ["recipe[minitest-handler]", "recipe[java::openjdk]"]
