@@ -51,6 +51,12 @@ suites:
   attributes:
     java:
       jdk_version: "7"
+- name: openjdk-8
+  excludes: ["amazon-2013-03-01", "centos-6.4", "ubuntu-12.04", "ubuntu-13.04", "sles-11-sp2", "fedora-18"]
+  run_list: ["recipe[minitest-handler]", "recipe[java::openjdk]"]
+  attributes:
+    java:
+      jdk_version: "8"
 
 - name: oracle
   run_list: ["recipe[minitest-handler]", "recipe[java::oracle]"]
